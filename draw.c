@@ -77,14 +77,14 @@ int main(int argc, char **argv)
     z=-0.1;
     
     
-    //initialize();
+    /*initialize();*/
     
     glutMainLoop();
 
     return 0;
 }
 
-void count_score(){ //fja koja racuna skor na osnovu Pitagorine teoreme preko razdaljine koordinata (x,y) od centra i odredjivanja kojem krugu pripada poluprecnik r
+void count_score(){ /*fja koja racuna skor na osnovu Pitagorine teoreme preko razdaljine koordinata (x,y) od centra i odredjivanja kojem krugu pripada poluprecnik r*/
 
     
     if(strenth_parametar>39.6 && strenth_parametar<43.06)
@@ -201,7 +201,7 @@ void count_score(){ //fja koja racuna skor na osnovu Pitagorine teoreme preko ra
 }
 
 
-static void initialize(void) //inicijalizator koji sam hteo da koristim za teksture
+static void initialize(void) /*inicijalizator koji sam hteo da koristim za teksture*/
 {
     
     
@@ -297,7 +297,7 @@ static void on_keyboard(unsigned char key, int x, int y)
                 timer_active2=0;
         }
         break;
-//     case 'F':
+/*    case 'F':
 //     case 'f':
 //         if(window_size==0){
 //             glutFullScreen();
@@ -306,9 +306,9 @@ static void on_keyboard(unsigned char key, int x, int y)
 //         else{
 //             glutReshapeWindow(width,height);
 //             window_size--;
-//         }
+//         }*/
 
-       case 'w': //resetuje se sve
+       case 'w': /*resetuje se sve*/
        case 'W':
             animation_parametar=0;
             strenth_parametar=1;
@@ -326,7 +326,7 @@ static void on_timer2(int value){
     if(value!=2)
         return;
     
-        if(strenth_parametar<=101 && move_down==0){ // pomeramo indikator jacine gore dole i time odredjujemo strenth_parametar koji je bitan za y
+        if(strenth_parametar<=101 && move_down==0){ /* pomeramo indikator jacine gore dole i time odredjujemo strenth_parametar koji je bitan za y*/
             strenth_parametar=strenth_parametar+2;
             glutTimerFunc(10, on_timer, 0);
             if(strenth_parametar==101)
@@ -353,7 +353,7 @@ static void on_timer(int value)
 {
     if (value != 0)
         return;
-    if(timer_active && space==1){ //ako smo jednom pritsli space sve se zaustavlja
+    if(timer_active && space==1){ /*ako smo jednom pritsli space sve se zaustavlja*/
            animation_parametar=0;
            strenth_parametar=1;
            timer_active=0;
@@ -367,7 +367,7 @@ static void on_timer(int value)
         
 }
 
-void on_timer1(int value){ //utice na promenu animation_parametar koji utice na kretanje od pocetka ka meti
+void on_timer1(int value){ /*utice na promenu animation_parametar koji utice na kretanje od pocetka ka meti*/
     if(value!=1)
         return;
     if(timer_active1){
@@ -394,7 +394,7 @@ void on_timer1(int value){ //utice na promenu animation_parametar koji utice na 
 
 
 
-void show_text() //fja za tekst koja prikazuje score:##
+void show_text() /*fja za tekst koja prikazuje score:##*/
     {
         glDisable(GL_LIGHTING);
         glMatrixMode(GL_MODELVIEW);
@@ -414,7 +414,7 @@ void show_text() //fja za tekst koja prikazuje score:##
                     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,'R');
                     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,'E');
                     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,':');
-                    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,prva_cifra+'0'); //konvertujemo prvu cifru i drugu u char preko '0'+cifra
+                    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,prva_cifra+'0'); /*konvertujemo prvu cifru i drugu u char preko '0'+cifra*/
                     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,druga_cifra+'0');
             glPopMatrix();
             glMatrixMode(GL_MODELVIEW);
@@ -442,14 +442,14 @@ void on_display() {
     glPushMatrix();
         glTranslatef(0,0,1);
         glScalef(0.1,0.1,0.1);
-        if(move_right<=20 && move_left==0 && space==0){ //pomeranje strelice desno levo
+        if(move_right<=20 && move_left==0 && space==0){ /*pomeranje strelice desno levo*/
             move_right=move_right+1;
             glutPostRedisplay();
             glutTimerFunc(10, on_timer, 0);
             if(move_right==20)
                 move_left=1;
         }
-        else if(move_right>=-20 && move_left==1 && space==0){     //pomeranje strelice levo desno
+        else if(move_right>=-20 && move_left==1 && space==0){     /*pomeranje strelice levo desno*/
             move_right=move_right-1;
             glutPostRedisplay();
             glutTimerFunc(10, on_timer, 0);
@@ -458,13 +458,13 @@ void on_display() {
         }    
         glRotatef(move_right,0,1,0);
         
-        glTranslatef(0,7.5*sin(animation_parametar/(8.5+(strenth_parametar/100)*6)),1-animation_parametar);  // transliranje strelice po sinusoidi ka meti
+        glTranslatef(0,7.5*sin(animation_parametar/(8.5+(strenth_parametar/100)*6)),1-animation_parametar);  /* transliranje strelice po sinusoidi ka meti*/
         draw_dart();
     glPopMatrix();
     
     
     
-    double clipping_plane[] = {0, -1, 0,-0.3+(strenth_parametar/100)*0.6}; //kliping ravan koja pokriva i otkriva indikator jacine
+    double clipping_plane[] = {0, -1, 0,-0.3+(strenth_parametar/100)*0.6}; /*kliping ravan koja pokriva i otkriva indikator jacine*/
     glClipPlane(GL_CLIP_PLANE0, clipping_plane);
     glEnable(GL_CLIP_PLANE0);
     
@@ -473,7 +473,7 @@ void on_display() {
         glNormal3f(0,0,-1);
         glScalef(0.1,0.6,0.1);
         glTranslatef(0,0,5);
-        glutSolidCube(1);//indikator jacine
+        glutSolidCube(1);/*indikator jacine*/
     glPopMatrix();
     glDisable(GL_CLIP_PLANE0);
     glPushMatrix();
@@ -483,11 +483,11 @@ void on_display() {
     
     
     
-    show_text(); //fja prikazuje tekst na ekranu SCORE:##
+    show_text(); /*fja prikazuje tekst na ekranu SCORE:##*/
     
     glPushMatrix();
     
-    //glBindTexture(GL_TEXTURE_2D,names[0]);
+ /*   //glBindTexture(GL_TEXTURE_2D,names[0]);
     
 //     glNormal3f(0,0,1);
 //     
@@ -510,13 +510,15 @@ void on_display() {
 //     glEnd();
 //     
 //     glBindTexture(GL_TEXTURE_2D,0);
+*/
     
     glPopMatrix();
     glutSwapBuffers();
 }
-void draw_target(){ //fja za crtanje mete,crta se preko 10 diskova koji su postavljeni jedan ispred drugog
+void draw_target(){ /*fja za crtanje mete,crta se preko 10 diskova koji su postavljeni jedan ispred drugog*/
     glNormal3f(0,0,-1);  
-    for(int i=1;i<=10;i++){
+    int i;
+    for(i=1;i<=10;i++){
         glTranslatef(0,0,-0.001);
         if(i==1)
             glColor3f(1,0,0);
@@ -529,36 +531,36 @@ void draw_target(){ //fja za crtanje mete,crta se preko 10 diskova koji su posta
     }
 }
 
-void draw_dart(){  //crtanje strelice 
+void draw_dart(){  /*crtanje strelice */
     
     glColor3f(1,0,0.1); 
-    glBegin(GL_POLYGON);  //krilo
+    glBegin(GL_POLYGON);  /*krilo*/
         glVertex3f(0,0,-1);
         glVertex3f(0,1,-0.5);
         glVertex3f(0,1,0.5);
         glVertex3f(0,0,1);
     glEnd();
-     glBegin(GL_POLYGON); // krilo
+     glBegin(GL_POLYGON); 
         glVertex3f(0,0,-1);
         glVertex3f(0,-1,-0.5);
         glVertex3f(0,-1,0.5);
         glVertex3f(0,0,1);
     glEnd();
     
-        glBegin(GL_POLYGON); //krilo
+        glBegin(GL_POLYGON); 
         glVertex3f(0,0,-1);
         glVertex3f(1,0,-0.5);
         glVertex3f(1,0,0.5);
         glVertex3f(0,0,1);
     glEnd();
-     glBegin(GL_POLYGON); //krilo
+     glBegin(GL_POLYGON); 
         glVertex3f(0,0,-1);
         glVertex3f(-1,0,-0.5);
         glVertex3f(-1,0,0.5);
         glVertex3f(0,0,1);
     glEnd();
-    // transliramo pa crtamo cilindar koji je ili u obliku kupe ili u obliku kupe bez vrha
-    glColor3f(0.9,0.7,0); //crtanje vrata i spica strelice
+    /*transliramo pa crtamo cilindar koji je ili u obliku kupe ili u obliku kupe bez vrha*/
+    glColor3f(0.9,0.7,0); /*crtanje vrata i spica strelice*/
     glTranslatef(0,0,-4.3);
     GLUquadric* quad=gluNewQuadric();
     gluCylinder(quad,0.1,0.1,4.2,50,50);
@@ -570,15 +572,15 @@ void draw_dart(){  //crtanje strelice
     gluCylinder(quad,0.1,0.2,0.2,50,50);
     glColor3f(0,1,0);
     glTranslatef(0,0,-2.0);
-    gluCylinder(quad,0.05,0.1,2,50,50);//spic
+    gluCylinder(quad,0.05,0.1,2,50,50);/*spic*/
     x=0;
     z=0.000001;
     if(space==1)
-        x=tan(PI/180*(move_right+0.0))*3.31; //odredjivanje x preko tangesa jer max ugao koji moze da uzme x je 20 stepeni a min je -20,dato je rastojanje i preko toga se odredujje
-    if(animation_parametar==33){//ako animation_parametar dodje do 33 tj do mete racuna se y
+        x=tan(PI/180*(move_right+0.0))*3.31; /*odredjivanje x preko tangesa jer max ugao koji moze da uzme x je 20 stepeni a min je -20,dato je rastojanje i preko toga se odredujje*/
+    if(animation_parametar==33){/*ako animation_parametar dodje do 33 tj do mete racuna se y*/
         y=7.5*sin(animation_parametar/(8.5+(strenth_parametar/100)*6));
     }
-    glColor3f(1,0,0); // boja indikatora jacine
+    glColor3f(1,0,0); /* boja indikatora jacine*/
     
 
     
